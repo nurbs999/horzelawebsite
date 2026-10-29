@@ -1,7 +1,7 @@
 /** Central settings and portfolio data for Martin Horzela */
 export const siteConfig = {
   name: 'Martin Horzela',
-  email: 'kontakt@martinhorzela.de',
+  email: 'mhorzela@icloud.com',
   contactReady: true,
   title: 'Martin Horzela – 3D, Web & KI-Projekte von A bis Z',
   description: 'Technischer Partner für anspruchsvolle 3D-Konfiguratoren, WebGL, Unreal Engine und maßgeschneiderte KI-Lösungen. Begleitung von der Schätzung bis zur Projektpflege.',
