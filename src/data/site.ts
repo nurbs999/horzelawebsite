@@ -1,62 +1,126 @@
-/** Central settings. Both release flags intentionally remain false in this draft. */
+/** Central settings and portfolio data for Martin Horzela */
 export const siteConfig = {
   name: 'Martin Horzela',
   email: 'kontakt@martinhorzela.de',
-  contactReady: false,
-  launchReady: false,
-  title: 'Martin Horzela – KI für Handwerk & kleine Unternehmen',
-  description: 'Lokale KI, Chatbots und individuelle Software für kleine Unternehmen und Handwerksbetriebe. Martin Horzela begleitet Planung, Umsetzung und Ihr Team.',
+  contactReady: true,
+  title: 'Martin Horzela – 3D, Web & KI-Projekte von A bis Z',
+  description: 'Technischer Partner für anspruchsvolle 3D-Konfiguratoren, WebGL, Unreal Engine und maßgeschneiderte KI-Lösungen. Begleitung von der Schätzung bis zur Projektpflege.',
   linkedin: 'https://de.linkedin.com/in/martin-horzela-5b6a26103',
   xing: 'https://www.xing.com/profile/Martin_Horzela',
 };
 
-const subject = 'KI-Unterstützung für unseren Betrieb';
-const body = 'Guten Tag Herr Horzela,\n\nwir möchten prüfen, wie KI uns bei folgender Aufgabe unterstützen kann:\n\nUnser Betrieb:\nUnsere Aufgabe:\nBisherige Arbeitsweise oder Software:\nUnser Ziel:\n\nFreundliche Grüße';
+const subject = 'Anfrage zu einem gemeinsamen Projekt';
+const body = 'Hallo Martin,\n\nich habe dein Portfolio gesehen und möchte über ein potenzielles Projekt sprechen:\n\nUnser Vorhaben:\nAktueller Stand:\nBesondere Herausforderungen:\n\nBeste Grüße';
 export const contactMailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-export const services = [
+export const projects = [
   {
-    number: '01', key: 'local', icon: 'server', category: 'LOKALE KI',
-    title: 'Ihr Wissen.\nAm richtigen Ort.',
-    description: 'Anleitungen, Produktwissen und interne Abläufe leichter finden: Ich entwickle lokal betreibbare KI-Lösungen, die mit ausgewählten Informationen aus Ihrem Unternehmen arbeiten.',
-    benefit: 'Für ein Team, das weniger suchen muss.',
-    tags: ['Unternehmenswissen', 'Interne Assistenten'],
+    id: 'pina',
+    number: '01',
+    badge: 'PRODUKTIV IM DAUEREINSATZ',
+    badgeType: 'live',
+    title: 'Pina Sonnensegel: 3D-Konfigurator & RAG-Chatbot',
+    subtitle: 'Komplexe Geometrie verständlich visualisiert – von der Millimeter-Berechnung bis zur KI-Kundenberatung.',
+    image: '/images/pina-konfigurator.jpg',
+    liveUrl: 'https://konfigurator.sonnensegel-pina.de',
+    client: 'Pina-Design (Sonnensegel & Montagesysteme)',
+    tags: ['WebGL & 3D', 'RAG / KI-Chatbot', 'Produktkonfiguration', 'Full-Cycle Betreuung'],
+    overview: 'Sonnensegel sind technisch hochkomplex: Masten, Auslenkungen, Zugkräfte und Wandpunkte müssen exakt berechnet werden. Statt trockener Tabellen entstand eine flüssige, interaktive 3D-Welt im Browser, die Kunden durch den gesamten Kaufprozess führt.',
+    steps: [
+      { step: '01', title: 'Produkt- & Geometrieverständnis', desc: 'Tiefes Einarbeiten in Segelstatik, Montage-Szenarien und Beschlagteile.' },
+      { step: '02', title: '100% Eigenentwicklung in WebGL', desc: 'Interaktive 3D-Engine im Browser mit millimetergenauer Echtzeit-Berechnung.' },
+      { step: '03', title: 'Maßgeschneidertes RAG-System', desc: 'KI-Chatbot mit Zugriff auf technisches Fachwissen zur direkten Beratung im Tool.' },
+      { step: '04', title: 'Release & jahrelange Pflege', desc: 'Kontinuierliche Performance-Optimierung, Wartung und Feature-Erweiterung.' },
+    ],
   },
   {
-    number: '02', key: 'chat', icon: 'chat', category: 'KI-ASSISTENTEN & CHATBOTS',
-    title: 'Gute Antworten.\nDirekt in Ihrer Anwendung.',
-    description: 'Ein Assistent, der Ihr Angebot erklärt und Kunden bei der Auswahl begleitet. Ich integriere KI in Websites, interne Anwendungen und Produktkonfiguratoren.',
-    benefit: 'Für Fragen, die sonst immer wieder bei Ihnen landen.',
-    tags: ['Kundenservice', 'Produktberatung'],
+    id: 'gartenplaner',
+    number: '02',
+    badge: 'IN AKTIVER ENTWICKLUNG',
+    badgeType: 'dev',
+    title: 'Immersiver Gartenplaner: Vom PC direkt in die VR-Brille',
+    subtitle: 'Wunschgarten am Desktop gestalten und mit der VR-Brille 1:1 im eigenen Garten erleben.',
+    image: '/images/gartenplaner-vr.jpg',
+    liveUrl: '',
+    client: 'Eigenentwicklung & Partner',
+    tags: ['Unreal Engine', 'Virtual Reality (VR)', 'Echtzeit-3D', 'Architektur & Landschaft'],
+    overview: 'Zweidimensionale Pläne machen es Bauherren schwer, räumliche Dimensionen zu begreifen. Dieses Projekt schließt die Lücke: Den Garten am PC frei planen und anschließend mit der VR-Brille direkt vor Ort in Lebensgröße (1:1) begehen, noch bevor der erste Spatenstich getan ist.',
+    steps: [
+      { step: '01', title: 'Konzeption & Machbarkeitsanalyse', desc: 'Leistungsfähiges Echtzeit-Rendering für anspruchsvolle Pflanzen- und Lichtsimulation.' },
+      { step: '02', title: 'Unreal Engine Architektur', desc: 'High-End 3D-Visualisierung mit flüssigen 90+ FPS für ein immersives VR-Erlebnis.' },
+      { step: '03', title: '1:1 Skalierung vor Ort', desc: 'Maßstabsgetreue Projektion der Planung direkt in den physischen Garten.' },
+      { step: '04', title: 'Schritt zur Marktreife', desc: 'Laufende Weiterentwicklung vom Prototyping hin zum professionellen Planungswerkzeug.' },
+    ],
   },
   {
-    number: '03', key: 'code', icon: 'cube', category: 'SOFTWARE & 3D',
-    title: 'Ihre Software.\nEinen Schritt weiter.',
-    description: 'Bestehende Anwendungen erweitern, Schnittstellen verbinden und 3D-Konfiguratoren mit KI weiterentwickeln. KI-generierten Code prüfe ich fachlich, bevor er Teil der Anwendung wird.',
-    benefit: 'Für Ideen, aus denen funktionierende Anwendungen werden.',
-    tags: ['Webentwicklung', '3D-Konfiguratoren'],
-  },
-  {
-    number: '04', key: 'team', icon: 'people', category: 'KI IM TEAM',
-    title: 'Technik einführen.\nMenschen mitnehmen.',
-    description: 'Wir üben an echten Aufgaben aus Ihrem Betrieb: passende Anweisungen formulieren, Ergebnisse prüfen und sinnvolle Arbeitsabläufe entwickeln. Verständlich, auch ohne KI-Vorwissen.',
-    benefit: 'Für Mitarbeitende, die selbst weiterkommen.',
-    tags: ['Praxisbegleitung', 'Wissen aufbauen'],
+    id: 'next-project',
+    number: '03',
+    badge: 'IHR PROJEKT',
+    badgeType: 'upcoming',
+    title: 'Ihr nächstes Leuchtturm-Projekt: Von A bis Z',
+    subtitle: 'Kein Code-Monkey, sondern ein Partner, der mitdenkt, realistisch schätzt und liefert.',
+    image: '',
+    liveUrl: '#kontakt',
+    client: 'Gemeinsam mit Ihnen',
+    tags: ['3D / WebGL', 'Maßgeschneiderte KI', 'Individuelle Web-Apps', 'End-to-End Partnerschaft'],
+    overview: 'Sie haben eine anspruchsvolle Idee für einen 3D-Konfigurator, ein VR-Tool oder eine maßgeschneiderte KI-Anwendung? Ich begleite Sie von der allerersten Aufwandsschätzung bis zum erfolgreichen Betrieb.',
+    steps: [
+      { step: '01', title: 'Ehrliche Aufwandsschätzung', desc: 'Keine Luftschlösser: klare Roadmap, transparente Meilensteine und echte Machbarkeit.' },
+      { step: '02', title: 'Tiefes Geschäftsverständnis', desc: 'Ich verstehe Ihre Kunden und Produkte, bevor die erste Zeile Code geschrieben wird.' },
+      { step: '03', title: '100% Hands-on Entwicklung', desc: 'Saubere, wartbare Architektur nach modernen Web-, 3D- und KI-Standards.' },
+      { step: '04', title: 'Verlässliche Projektpflege', desc: 'Ich bleibe an Bord, wenn das Projekt live ist – für Updates, Pflege und Skalierung.' },
+    ],
   },
 ] as const;
 
-export const steps = [
-  { number: '01', title: 'Verstehen.', text: 'Wir sprechen über Ihren Betrieb, Ihre Abläufe und eine Aufgabe, die Sie konkret entlasten möchten.' },
-  { number: '02', title: 'Klein anfangen.', text: 'Wir stecken den ersten Anwendungsfall ab: Was soll die Lösung leisten, welche Daten braucht sie und woran erkennen wir den Nutzen?' },
-  { number: '03', title: 'Gemeinsam umsetzen.', text: 'Ich entwickle und integriere. Sie geben Rückmeldung. Zwischenergebnisse prüfen wir an Aufgaben aus Ihrem Alltag.' },
-  { number: '04', title: 'Im Alltag anwenden.', text: 'Ihr Team lernt die Lösung kennen. Wir halten fest, wie sie genutzt wird und welche nächsten Schritte sinnvoll sind.' },
+export const processPhases = [
+  {
+    number: '01',
+    title: 'Schätzung & Machbarkeit',
+    tagline: 'Ehrlich gerechnet statt schöngeredet',
+    text: 'Jedes Projekt beginnt mit einer fundierten Analyse: Was ist technisch machbar? Wo lauern Risiken? Sie erhalten eine realistische Aufwandsschätzung und einen verlässlichen Zeitplan.',
+  },
+  {
+    number: '02',
+    title: 'Produkt- & Domänenwissen',
+    tagline: 'Ihre Branche wirklich verstehen',
+    text: 'Code ist nur Mittel zum Zweck. Ich tauche tief in Ihr Produkt, Ihre Fachbegriffe und Kundenbedürfnisse ein. Nur wer das Problem versteht, baut die richtige Lösung.',
+  },
+  {
+    number: '03',
+    title: '100% Hands-on Entwicklung',
+    tagline: 'WebGL, 3D, KI & modernstes Web',
+    text: 'Keine Subunternehmer, keine Weitergabe: Ich entwickle Ihre Anwendung persönlich von Grund auf – wartbar, performant und mit modernster Architektur.',
+  },
+  {
+    number: '04',
+    title: 'Release & Deployment',
+    tagline: 'Souverän und sicher live gehen',
+    text: 'Von der Server-Konfiguration über automatisierte CI/CD-Pipelines bis zum Rollout: Ein reibungsloser Start ohne böse Überraschungen.',
+  },
+  {
+    number: '05',
+    title: 'Projektpflege & Partnerschaft',
+    tagline: 'Da, wenn es drauf ankommt',
+    text: 'Nach dem Launch geht es erst richtig los. Ich begleite Ihr Projekt über Jahre hinweg, pflege Systeme, baue neue Features und integriere neue Technologien wie KI.',
+  },
 ] as const;
 
 export const faqs = [
-  { question: 'Ist mein Betrieb nicht zu klein für KI?', answer: 'Entscheidend ist die Aufgabe, nicht die Größe Ihres Betriebs. Wiederkehrende Fragen, verstreute Informationen oder häufige Routinearbeiten können ein guter Ausgangspunkt sein. Wir beginnen mit einem überschaubaren Anwendungsfall und prüfen, ob KI dafür sinnvoll ist.' },
-  { question: 'Muss die KI auf einem eigenen Server laufen?', answer: 'Nein. Welche Betriebsform passt, hängt von Ihren Daten, der Aufgabe und der vorhandenen Technik ab. Lokaler Betrieb kann sinnvoll sein. Wir klären aber zuerst die Anforderungen und entscheiden dann, welche Lösung zu Ihrem Betrieb passt.' },
-  { question: 'Was passiert mit unseren Unternehmensdaten?', answer: 'Vor der Umsetzung legen wir fest, welche Informationen die Anwendung nutzen darf, wer darauf zugreifen kann und wo sie verarbeitet werden. Auch bei einer lokalen Lösung müssen Zugriffe, Aktualisierungen und Sicherungen geplant werden. Pauschale Versprechen ersetzen diese Prüfung nicht.' },
-  { question: 'Kann unsere vorhandene Software eingebunden werden?', answer: 'Das prüfen wir gemeinsam. Entscheidend ist, welche Schnittstellen und Zugriffsmöglichkeiten Ihre Software bietet. Je nach Ausgangslage kann eine direkte Integration, eine ergänzende Anwendung oder zunächst ein kleiner Test sinnvoll sein.' },
-  { question: 'Braucht mein Team schon KI-Erfahrung?', answer: 'Sie brauchen weder ein fertiges technisches Konzept noch KI-Vorkenntnisse. Wir setzen bei Ihren Aufgaben und dem vorhandenen Wissen an. Zur Einarbeitung gehört auch, Antworten kritisch zu prüfen und die Grenzen der Anwendung zu verstehen.' },
-  { question: 'Was kostet das – und wie lange dauert es?', answer: 'Das lässt sich nach einem Blick auf Aufgabe, Daten und vorhandene Systeme seriös einschätzen. Deshalb grenzen wir den ersten Schritt klar ein. Umfang und Aufwand besprechen wir, bevor die Umsetzung beginnt.' },
+  {
+    question: 'Was unterscheidet Sie von einer klassischen Agentur oder reinen Freelancern?',
+    answer: 'Bei mir gibt es keinen Wasserkopf und keine stillen Posten: Sie sprechen direkt mit dem Menschen, der Ihre Software konzipiert, schätzt und selbst programmiert. Ich denke über den Tellerrand des reinen Codings hinaus und übernehme Verantwortung für das gesamte Projekt von A bis Z.',
+  },
+  {
+    question: 'Können Sie auch bestehende 3D- oder Web-Projekte übernehmen und weiterentwickeln?',
+    answer: 'Ja. Bei Pina-Design und anderen Projekten habe ich bestehende Systeme analysiert, refaktoriert, mit modernen Technologien (wie WebGL und KI/RAG) erweitert und dauerhaft in die Pflege übernommen.',
+  },
+  {
+    question: 'Wie läuft eine typische Zusammenarbeit ab?',
+    answer: 'Wir starten mit einem unverbindlichen Kennenlernen und einer Machbarkeitsprüfung. Anschließend erstelle ich eine detaillierte Schätzung. In kurzen Feedback-Schleifen sehen Sie regelmäßig funktionierende Zwischenstände.',
+  },
+  {
+    question: 'Wie binden Sie KI in bestehende Produkte ein?',
+    answer: 'KI muss einen echten Mehrwert bieten – etwa als RAG-Chatbot (Retrieval-Augmented Generation) mit Zugriff auf internes Firmenwissen im Konfigurator oder zur automatisierten Datenverarbeitung. Wir prüfen genau, wo KI Zeit spart und Kunden hilft.',
+  },
 ] as const;

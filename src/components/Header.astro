@@ -1,12 +1,17 @@
 ---
 import Icon from './Icon.astro';
-const navigation = [ ['Leistungen', '/#leistungen'], ['Aus der Praxis', '/#praxis'], ['Über mich', '/#ueber-mich'], ['Zusammenarbeit', '/#ablauf'] ];
+const navigation = [
+  ['Leuchtturm-Projekte', '/#projekte'],
+  ['Der A–Z Prozess', '/#prozess'],
+  ['Über mich', '/#ueber-mich'],
+  ['FAQ', '/#fragen']
+];
 ---
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/#start" aria-label="Martin Horzela – Startseite">
       <span class="brand-mark" aria-hidden="true">mh<span>·</span></span>
-      <span class="brand-name">Martin Horzela<span>KI & Softwareentwicklung</span></span>
+      <span class="brand-name">Martin Horzela<span>3D · Web · KI · End-to-End</span></span>
     </a>
     <nav class="desktop-nav" aria-label="Hauptnavigation">
       {navigation.map(([label, href]) => <a href={href}>{label}</a>)}
