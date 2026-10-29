@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+const examples = [
+  { label: 'Wissen finden', question: 'Wo finde ich die Montagehinweise?', answer: 'Die interne Anleitung bündelt die Arbeitsschritte. Ein Assistent kann Sie direkt zur passenden Stelle führen.', source: 'Wissen aus freigegebenen Dokumenten', icon: 'document' },
+  { label: 'Kunden helfen', question: 'Welche Lösung passt zu meinem Vorhaben?', answer: 'Ein Assistent fragt nach Ihren Anforderungen und erklärt passende Optionen aus dem Produktangebot.', source: 'Orientierung im Produktkonfigurator', icon: 'chat' },
+  { label: 'Team stärken', question: 'Wie nutze ich KI für diese Aufgabe?', answer: 'Gemeinsam entsteht ein nachvollziehbarer Ablauf: Aufgabe beschreiben, Ergebnis prüfen und gezielt verbessern.', source: 'Praxiswissen für den Arbeitsalltag', icon: 'people' },
+];
+---
+<div class="example-switcher">
+  <div class="example-top"><span class="example-avatar"><Icon name="spark" size={17}/></span><span>So kann KI helfen</span><span class="example-badge">Beispiel</span></div>
+  <div class="example-tabs" role="tablist" aria-label="Anwendungsbeispiele">
+    {examples.map((example, i) => <button role="tab" id={`example-tab-${i}`} aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`example-panel-${i}`} tabindex={i === 0 ? 0 : -1}>{example.label}</button>)}
+  </div>
+  {examples.map((example, i) => <div class="example-panel" role="tabpanel" id={`example-panel-${i}`} aria-labelledby={`example-tab-${i}`} tabindex="0" hidden={i !== 0}>
+    <p class="example-question">{example.question}</p>
+    <p class="example-answer">{example.answer}</p>
+    <span class="example-source"><Icon name={example.icon} size={14} />{example.source}</span>
+  </div>)}
+  <span class="example-disclaimer">Illustratives Beispiel · kein Live-Chat</span>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.example-switcher').forEach(root => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const activate = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        tab.setAttribute('aria-selected', String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        const panel = document.getElementById(tab.getAttribute('aria-controls') || '');
+        if (panel) panel.hidden = i !== index;
+      });
+      if (focus) tabs[index]?.focus();
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(index));
+      tab.addEventListener('keydown', event => {
+        let next: number | undefined;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); activate(next, true); }
+      });
+    });
+  });
+</script>

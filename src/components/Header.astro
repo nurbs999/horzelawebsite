@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+const navigation = [ ['Leistungen', '/#leistungen'], ['Aus der Praxis', '/#praxis'], ['Über mich', '/#ueber-mich'], ['Zusammenarbeit', '/#ablauf'] ];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/#start" aria-label="Martin Horzela – Startseite">
+      <span class="brand-mark" aria-hidden="true">mh<span>·</span></span>
+      <span class="brand-name">Martin Horzela<span>KI & Softwareentwicklung</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Hauptnavigation">
+      {navigation.map(([label, href]) => <a href={href}>{label}</a>)}
+    </nav>
+    <a class="button button-dark header-cta" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={17} /></a>
+    <details class="mobile-menu">
+      <summary aria-label="Navigationsmenü"><Icon name="menu" /><span class="sr-only">Menü</span></summary>
+      <nav aria-label="Mobile Hauptnavigation">
+        {navigation.map(([label, href]) => <a href={href}>{label}<Icon name="diagonal" size={18} /></a>)}
+        <a class="mobile-contact" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={18} /></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector<HTMLElement>('summary')?.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+  });
+</script>

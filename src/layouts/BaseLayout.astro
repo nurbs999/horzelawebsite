@@ -1,0 +1,53 @@
+---
+import '@fontsource-variable/manrope/wght.css';
+import '@fontsource-variable/dm-sans/wght.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site';
+interface Props { title?: string; description?: string; noindex?: boolean; }
+const { title = siteConfig.title, description = siteConfig.description, noindex = !siteConfig.launchReady } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const image = new URL('/images/werkstatt-ki.webp', Astro.site);
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': new URL('/#website', Astro.site).href, url: Astro.site?.href, name: 'Martin Horzela – KI & Softwareentwicklung', inLanguage: 'de-DE' },
+    { '@type': 'Person', '@id': new URL('/#martin-horzela', Astro.site).href, name: siteConfig.name, url: Astro.site?.href,
+      jobTitle: 'Softwareentwickler', sameAs: [siteConfig.linkedin, siteConfig.xing],
+      knowsAbout: ['Softwareentwicklung', 'WebGL', 'JavaScript', 'KI-Implementierung', '3D-Konfiguratoren'],
+      ...(siteConfig.contactReady ? { email: siteConfig.email } : {}) },
+  ],
+};
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8f2" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Martin Horzela" />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1440" />
+    <meta property="og:image:height" content="960" />
+    <meta property="og:image:alt" content="Werkstatt mit Laptop und lokalem KI-Rechner – KI-generiertes Symbolbild" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {siteConfig.launchReady && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body id="start">
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+    <Header />
+    <main id="inhalt"><slot /></main>
+    <Footer />
+  </body>
+</html>

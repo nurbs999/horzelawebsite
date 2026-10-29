@@ -1,0 +1,19 @@
+---
+import { siteConfig } from '../data/site';
+import Icon from './Icon.astro';
+---
+<footer class="site-footer">
+  <div class="container footer-top">
+    <a class="brand" href="/#start" aria-label="Martin Horzela – zurück zum Anfang">
+      <span class="brand-mark" aria-hidden="true">mh<span>·</span></span>
+      <span class="brand-name">Martin Horzela<span>KI, die im Betrieb mitarbeitet.</span></span>
+    </a>
+    <a class="back-to-top" href="#start">Zurück nach oben <Icon name="diagonal" size={18} /></a>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} Martin Horzela</p>
+    <nav aria-label="Rechtliche Informationen"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a></nav>
+    <span class="footer-note">Mit Verstand entwickelt.</span>
+  </div>
+  {!siteConfig.launchReady && <p class="draft-note container">Website-Entwurf · Kontaktadresse und Rechtstexte werden vor dem Livegang ergänzt.</p>}
+</footer>
