@@ -63,7 +63,7 @@ export const projects = [
     badge: 'IHR PROJEKT',
     badgeType: 'upcoming',
     title: 'Ihr nächstes Leuchtturm-Projekt: Von A bis Z',
-    subtitle: 'Mehr als reine Umsetzung: Ein technischer Partner, der mitdenkt, realistisch schätzt und liefert.',
+    subtitle: 'Vom Konzept bis zum Release: Ein technischer Partner, der Verantwortung übernimmt und mitdenkt.',
     image: '',
     liveUrl: '#kontakt',
     client: 'Gemeinsam mit Ihnen',
