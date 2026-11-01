@@ -22,8 +22,15 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
       </div>
       <div class="hero-visual">
         <figure class="hero-photo">
-          <img src="/images/pina-konfigurator.jpg" width="1440" height="960" fetchpriority="high" loading="eager" alt="Pina Sonnensegel 3D-Konfigurator mit RAG-Chatbot – entwickelt von Martin Horzela" />
-          <figcaption class="hero-image-caption">Projekt-Highlight: Pina 3D-Konfigurator<span>Echtzeit-WebGL & integrierte KI-Beratung</span></figcaption>
+          <img
+            src="/videos/pina-promo-poster.webp"
+            width="1280"
+            height="720"
+            fetchpriority="high"
+            loading="eager"
+            alt="Pina Sonnensegel 3D-Konfigurator mit RAG-Chatbot – entwickelt von Martin Horzela"
+          />
+          <figcaption class="hero-image-caption">Projekt-Highlight: Pina 3D-Konfigurator<span>Echtzeit-WebGL &amp; integrierte KI-Beratung</span></figcaption>
         </figure>
         <div class="hero-sticker" aria-hidden="true">
           <Icon name="spark" size={26}/>
@@ -108,7 +115,29 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
               </div>
 
               <div class="project-media">
-                {project.image ? (
+                {'video' in project && project.video ? (
+                  <figure class="media-frame media-frame-video">
+                    <video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      poster={project.video.poster}
+                      width="1280"
+                      height="720"
+                      aria-label={`${project.title} Screencast-Demonstration`}
+                    >
+                      <source src={project.video.webm} type="video/webm" />
+                      <source src={project.video.mp4} type="video/mp4" />
+                      <img src={project.image} alt={project.title} loading="lazy" />
+                    </video>
+                    <div class="media-overlay">
+                      <span>{project.title}</span>
+                      <span class="media-badge">Live-Screencast</span>
+                    </div>
+                  </figure>
+                ) : project.image ? (
                   <figure class="media-frame">
                     <img src={project.image} alt={project.title} loading="lazy" />
                     <div class="media-overlay">

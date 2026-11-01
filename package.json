@@ -5,10 +5,10 @@
   "type": "module",
   "packageManager": "npm@11.9.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check"
+    "dev": "node scripts/astro-cli.js dev",
+    "build": "node scripts/astro-cli.js build",
+    "preview": "node scripts/astro-cli.js preview",
+    "check": "node scripts/astro-cli.js check"
   },
   "dependencies": {
     "astro": "7.4.3",

@@ -22,6 +22,11 @@ export const projects = [
     title: 'Pina Sonnensegel: 3D-Konfigurator & RAG-Chatbot',
     subtitle: 'Komplexe Geometrie verständlich visualisiert – von der Millimeter-Berechnung bis zur KI-Kundenberatung.',
     image: '/images/pina-konfigurator.jpg',
+    video: {
+      webm: '/videos/pina-promo.webm',
+      mp4: '/videos/pina-promo.mp4',
+      poster: '/videos/pina-promo-poster.webp',
+    },
     liveUrl: 'https://konfigurator.sonnensegel-pina.de',
     client: 'Pina-Design (Sonnensegel & Montagesysteme)',
     tags: ['WebGL & 3D', 'RAG / KI-Chatbot', 'Produktkonfiguration', 'Full-Cycle Betreuung'],
