@@ -116,22 +116,28 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
 
               <div class="project-media">
                 {'video' in project && project.video ? (
-                  <figure class="media-frame media-frame-video">
+                  <figure class="media-frame media-frame-video" role="region" aria-label={`${project.title} Screencast Video`}>
                     <video
                       autoplay
                       muted
                       loop
                       playsinline
-                      preload="metadata"
+                      webkit-playsinline
+                      preload="auto"
                       poster={project.video.poster}
                       width="1280"
                       height="720"
                       aria-label={`${project.title} Screencast-Demonstration`}
                     >
-                      <source src={project.video.webm} type="video/webm" />
                       <source src={project.video.mp4} type="video/mp4" />
+                      <source src={project.video.webm} type="video/webm" />
                       <img src={project.image} alt={project.title} loading="lazy" />
                     </video>
+                    <button class="video-play-btn" type="button" aria-label="Video abspielen oder anhalten">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                      </svg>
+                    </button>
                     <div class="media-overlay">
                       <span>{project.title}</span>
                       <span class="media-badge">Live-Screencast</span>
@@ -282,7 +288,12 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
         <p class="copy-status" role="status" aria-live="polite" id="copy-status"></p>
       </div>
     </div>
-    <div class="contact-decoration" aria-hidden="true">↗</div>
+    <div class="contact-decoration" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="25" y1="95" x2="95" y2="25"></line>
+        <polyline points="45 25 95 25 95 75"></polyline>
+      </svg>
+    </div>
   </section>
 </BaseLayout>
 
@@ -303,5 +314,71 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
     } catch {
       if (status) status.textContent = `Bitte kopieren Sie die Adresse manuell: ${email}`;
     }
+  });
+
+  // Mobile & Desktop Video Autoplay, Viewport Observer & Tap-to-Play
+  const videoFrames = document.querySelectorAll<HTMLElement>('.media-frame-video');
+
+  videoFrames.forEach((frame) => {
+    const video = frame.querySelector<HTMLVideoElement>('video');
+    if (!video) return;
+
+    // Critical fix for iOS Safari: DOM property muted must be set explicitly
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const updateState = () => {
+      if (video.paused) {
+        frame.classList.remove('is-playing');
+      } else {
+        frame.classList.add('is-playing');
+      }
+    };
+
+    video.addEventListener('play', updateState);
+    video.addEventListener('pause', updateState);
+    video.addEventListener('playing', updateState);
+    video.addEventListener('waiting', updateState);
+
+    // Tap/Click to toggle play/pause (especially helpful if Low Power Mode prevents autoplay)
+    frame.addEventListener('click', (e) => {
+      // Don't interfere if clicking on an interactive link inside frame
+      const target = e.target as HTMLElement;
+      if (target.closest('a')) return;
+
+      if (video.paused) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    // IntersectionObserver: Autoplay only when in viewport on mobile, pause when scrolled away
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => updateState())
+                .catch(() => {
+                  // Autoplay policy prevented playback (e.g. iOS Low Power Mode)
+                  // The play button will remain visible so the user can tap to start!
+                  updateState();
+                });
+            }
+          } else {
+            if (!video.paused) {
+              video.pause();
+            }
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(frame);
+    updateState();
   });
 </script>
