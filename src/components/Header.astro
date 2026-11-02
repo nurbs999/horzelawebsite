@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { siteConfig } from '../data/site';
 const navigation = [
   ['Leuchtturm-Projekte', '/#projekte'],
   ['Der A–Z Prozess', '/#prozess'],
@@ -16,12 +17,16 @@ const navigation = [
     <nav class="desktop-nav" aria-label="Hauptnavigation">
       {navigation.map(([label, href]) => <a href={href}>{label}</a>)}
     </nav>
-    <a class="button button-dark header-cta" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={17} /></a>
+    {siteConfig.withContact && (
+      <a class="button button-dark header-cta" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={17} /></a>
+    )}
     <details class="mobile-menu">
       <summary aria-label="Navigationsmenü"><Icon name="menu" /><span class="sr-only">Menü</span></summary>
       <nav aria-label="Mobile Hauptnavigation">
         {navigation.map(([label, href]) => <a href={href}>{label}<Icon name="diagonal" size={18} /></a>)}
-        <a class="mobile-contact" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={18} /></a>
+        {siteConfig.withContact && (
+          <a class="mobile-contact" href="/#kontakt">Projekt besprechen <Icon name="diagonal" size={18} /></a>
+        )}
       </nav>
     </details>
   </div>

@@ -105,11 +105,11 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
                     <a class="button button-dark" href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                       Live-Anwendung testen <Icon name="diagonal" size={17} />
                     </a>
-                  ) : (
+                  ) : siteConfig.withContact ? (
                     <a class="button button-dark" href="#kontakt">
                       Projektidee anfragen <Icon name="diagonal" size={17} />
                     </a>
-                  )}
+                  ) : null}
                   {project.client && <span class="project-client">Kunde / Kontext: {project.client}</span>}
                 </div>
               </div>
@@ -156,7 +156,9 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
                       <Icon name="spark" size={48} />
                       <h4>Ihr Leuchtturm-Projekt</h4>
                       <p>Haben Sie eine anspruchsvolle Idee im Kopf? Sprechen wir über die Machbarkeit und die nächsten Schritte.</p>
-                      <a class="button button-lime" href="#kontakt">Projekt unverbindlich besprechen <Icon name="diagonal" size={18} /></a>
+                      {siteConfig.withContact && (
+                        <a class="button button-lime" href="#kontakt">Projekt unverbindlich besprechen <Icon name="diagonal" size={18} /></a>
+                      )}
                     </div>
                   </div>
                 )}
@@ -194,7 +196,9 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
           <h4>Ein Ansprechpartner für Ihr gesamtes Projekt.</h4>
           <p>Keine Weitergabe an ungelernte Subunternehmer. Sie arbeiten direkt mit dem Entwickler, der Ihr Projekt realisiert.</p>
         </div>
-        <a class="button button-dark" href="#kontakt">Zusammenarbeit starten <Icon name="diagonal" size={17} /></a>
+        {siteConfig.withContact && (
+          <a class="button button-dark" href="#kontakt">Zusammenarbeit starten <Icon name="diagonal" size={17} /></a>
+        )}
       </div>
     </div>
   </section>
@@ -240,7 +244,9 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
         <p class="eyebrow"><span class="section-number">04</span> GUT ZU WISSEN</p>
         <h2 id="faq-title">Häufige<br />Fragen</h2>
         <p>Transparenz ist die Basis einer guten Partnerschaft.<br />Hier sind die wichtigsten Antworten.</p>
-        <a href="#kontakt" class="text-link">Ihre Frage direkt besprechen <Icon name="diagonal" size={18}/></a>
+        {siteConfig.withContact && (
+          <a href="#kontakt" class="text-link">Ihre Frage direkt besprechen <Icon name="diagonal" size={18}/></a>
+        )}
       </div>
       <div class="faq-list">
         {faqs.map((faq, index) => (
@@ -258,43 +264,45 @@ import { siteConfig, contactMailto, projects, processPhases, faqs } from '../dat
   </section>
 
   <!-- CONTACT SECTION -->
-  <section class="contact-section" id="kontakt" aria-labelledby="contact-title">
-    <div class="container contact-inner">
-      <div class="contact-copy">
-        <p class="eyebrow"><span class="status-dot"></span> DER ERSTE SCHRITT IST EIN GESPRÄCH</p>
-        <h2 id="contact-title">Haben Sie ein Projekt,<br />das <span>mitgedacht werden will?</span></h2>
-        <p>Egal ob 3D-Konfigurator, VR-Visualisierung oder ein individuelles KI-System: Erzählen Sie mir von Ihrem Vorhaben. Eine fertige technische Spezifikation brauchen Sie noch nicht.</p>
-      </div>
-      <div class="contact-panel">
-        <span class="contact-icon" aria-hidden="true"><Icon name="diagonal" size={56}/></span>
-        <h3>Lassen Sie uns<br />konkret werden.</h3>
-        <p>Ein paar Sätze genügen für den Anfang:</p>
-        <ul class="contact-prompts">
-          <li><Icon name="check" size={17}/> Was soll Ihre Anwendung können?</li>
-          <li><Icon name="check" size={17}/> Gibt es bereits bestehende Systeme oder 3D-Daten?</li>
-          <li><Icon name="check" size={17}/> In welchem Zeitrahmen planen Sie?</li>
-        </ul>
-        <div class="contact-address">
-          <a href={contactMailto}>{siteConfig.email}</a>
+  {siteConfig.withContact && (
+    <section class="contact-section" id="kontakt" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div class="contact-copy">
+          <p class="eyebrow"><span class="status-dot"></span> DER ERSTE SCHRITT IST EIN GESPRÄCH</p>
+          <h2 id="contact-title">Haben Sie ein Projekt,<br />das <span>mitgedacht werden will?</span></h2>
+          <p>Egal ob 3D-Konfigurator, VR-Visualisierung oder ein individuelles KI-System: Erzählen Sie mir von Ihrem Vorhaben. Eine fertige technische Spezifikation brauchen Sie noch nicht.</p>
         </div>
-        <div class="contact-btn-row">
-          <a class="button button-lime" href={contactMailto}>
-            Projekt per E-Mail anfragen <Icon name="diagonal" size={19}/>
-          </a>
-          <button class="button button-dark" id="copy-email" data-email={siteConfig.email} type="button">
-            <span>Adresse kopieren</span> <Icon name="copy" size={18}/>
-          </button>
+        <div class="contact-panel">
+          <span class="contact-icon" aria-hidden="true"><Icon name="diagonal" size={56}/></span>
+          <h3>Lassen Sie uns<br />konkret werden.</h3>
+          <p>Ein paar Sätze genügen für den Anfang:</p>
+          <ul class="contact-prompts">
+            <li><Icon name="check" size={17}/> Was soll Ihre Anwendung können?</li>
+            <li><Icon name="check" size={17}/> Gibt es bereits bestehende Systeme oder 3D-Daten?</li>
+            <li><Icon name="check" size={17}/> In welchem Zeitrahmen planen Sie?</li>
+          </ul>
+          <div class="contact-address">
+            <a href={contactMailto}>{siteConfig.email}</a>
+          </div>
+          <div class="contact-btn-row">
+            <a class="button button-lime" href={contactMailto}>
+              Projekt per E-Mail anfragen <Icon name="diagonal" size={19}/>
+            </a>
+            <button class="button button-dark" id="copy-email" data-email={siteConfig.email} type="button">
+              <span>Adresse kopieren</span> <Icon name="copy" size={18}/>
+            </button>
+          </div>
+          <p class="copy-status" role="status" aria-live="polite" id="copy-status"></p>
         </div>
-        <p class="copy-status" role="status" aria-live="polite" id="copy-status"></p>
       </div>
-    </div>
-    <div class="contact-decoration" aria-hidden="true">
-      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="25" y1="95" x2="95" y2="25"></line>
-        <polyline points="45 25 95 25 95 75"></polyline>
-      </svg>
-    </div>
-  </section>
+      <div class="contact-decoration" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="25" y1="95" x2="95" y2="25"></line>
+          <polyline points="45 25 95 25 95 75"></polyline>
+        </svg>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <script>

@@ -16,7 +16,7 @@ const schema = {
     { '@type': 'Person', '@id': new URL('/#martin-horzela', Astro.site).href, name: siteConfig.name, url: Astro.site?.href,
       jobTitle: 'Softwareentwickler', sameAs: [siteConfig.linkedin, siteConfig.xing],
       knowsAbout: ['Softwareentwicklung', 'WebGL', 'JavaScript', 'KI-Implementierung', '3D-Konfiguratoren'],
-      ...(siteConfig.contactReady ? { email: siteConfig.email } : {}) },
+      ...(siteConfig.withContact && siteConfig.contactReady ? { email: siteConfig.email } : {}) },
   ],
 };
 ---

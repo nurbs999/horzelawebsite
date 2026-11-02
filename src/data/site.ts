@@ -2,6 +2,7 @@
 export const siteConfig = {
   name: 'Martin Horzela',
   email: 'mhorzela@icloud.com',
+  withContact: false,
   contactReady: true,
   launchReady: true,
   title: 'Martin Horzela – 3D, Web & KI-Projekte von A bis Z',
